@@ -1,104 +1,254 @@
-# Comandos Úteis de Terminal para Gerenciamento de Arquivos e Diretórios
+# Guia de Comandos PowerShell 🖥️💻
 
-Este repositório contém uma lista de comandos úteis para manipulação de arquivos e diretórios no terminal.
+Este repositório contém uma lista de **comandos úteis para PowerShell** que você pode usar para gerenciar arquivos, diretórios e muito mais. Ideal para desenvolvedores e administradores de sistemas! 🚀
 
-## Comandos Básicos
+---
 
-### 1. Listar Arquivos e Diretórios
+## Comandos Básicos de Arquivo e Diretório 📂
+
+### 1. Listar Arquivos e Diretórios 🔍
 
 Para listar os arquivos e diretórios no diretório atual:
 
-```bash
+```powershell
 ls
 ```
 
-Ou para sistemas Windows:
+Ou com uma visualização mais detalhada:
 
-```bash
-dir
+```powershell
+Get-ChildItem
 ```
 
-### 2. Criar Diretório
+---
+
+### 2. Criar um Novo Diretório 📁
 
 Para criar um novo diretório:
 
-```bash
+```powershell
+New-Item -ItemType Directory -Name "nome_do_diretorio"
+```
+
+Ou a versão curta:
+
+```powershell
 mkdir nome_do_diretorio
 ```
 
-### 3. Remover Diretório
+---
 
-Para remover um diretório vazio:
+### 3. Remover Diretório (vazio ou não vazio) 🧹
 
-```bash
-rmdir nome_do_diretorio
+- Para remover um diretório **vazio**:
+
+```powershell
+Remove-Item nome_do_diretorio
 ```
 
-Para remover um diretório não vazio:
+- Para remover um diretório **não vazio**:
 
-```bash
-rm -r nome_do_diretorio
+```powershell
+Remove-Item nome_do_diretorio -Recurse
 ```
 
-### 4. Criar Arquivo
+---
 
-Para criar um arquivo e adicionar conteúdo a ele:
+### 4. Criar um Novo Arquivo ✍️
 
-```bash
-echo "Conteúdo do arquivo" > nome_do_arquivo.txt
+Para criar um novo arquivo e adicionar conteúdo a ele:
+
+```powershell
+"Conteúdo do arquivo" | Out-File "nome_do_arquivo.txt"
 ```
 
-### 5. Copiar Arquivo ou Diretório
+---
 
-Para copiar um arquivo:
+### 5. Copiar Arquivo ou Diretório 📑
 
-```bash
-cp origem destino
+- Para copiar um arquivo:
+
+```powershell
+Copy-Item "origem" "destino"
 ```
 
-Para copiar um diretório e seu conteúdo:
+- Para copiar um diretório **recursivamente**:
 
-```bash
-cp -r origem destino
+```powershell
+Copy-Item "origem" "destino" -Recurse
 ```
 
-### 6. Renomear ou Mover Arquivo
+---
 
-Para renomear ou mover um arquivo:
+### 6. Mover ou Renomear Arquivo 🔄
 
-```bash
-mv arquivo_antigo novo_nome
+- Para **mover** um arquivo para outro diretório:
+
+```powershell
+Move-Item "origem" "destino"
 ```
 
-### 7. Excluir Arquivo
+- Para **renomear** um arquivo:
+
+```powershell
+Rename-Item "arquivo_antigo" "novo_nome"
+```
+
+---
+
+### 7. Excluir Arquivo ⚠️
 
 Para excluir um arquivo:
 
-```bash
-rm nome_do_arquivo
+```powershell
+Remove-Item "nome_do_arquivo"
 ```
 
-### 8. Buscar Arquivos
+Adicione a opção `-Force` para forçar a exclusão de arquivos protegidos.
 
-Para buscar arquivos dentro de um diretório (e subdiretórios):
+---
 
-```bash
-find . -name "nome_do_arquivo.extensao"
+### 8. Buscar Arquivos 🔎
+
+Para buscar arquivos dentro do diretório atual e subdiretórios:
+
+```powershell
+Get-ChildItem -Recurse -Filter "nome_do_arquivo.extensao"
 ```
 
-## Dicas Adicionais
+Ou se você quiser buscar por nome com um padrão:
 
-- **Comando `cp`**: Quando usar o comando `cp`, você pode adicionar a opção `-i` para que o terminal pergunte antes de sobrescrever arquivos existentes:
+```powershell
+Get-ChildItem -Recurse | Where-Object { $_.Name -like "*parte_do_nome*" }
+```
 
-  ```bash
-  cp -i origem destino
+---
+
+## Comandos Avançados ⚡
+
+### 9. Verificar o Espaço em Disco 💽
+
+Para verificar o uso do disco em sua máquina:
+
+```powershell
+Get-PSDrive
+```
+
+### 10. Mudar para Outro Diretório 📂
+
+Para navegar entre diretórios:
+
+```powershell
+Set-Location "caminho_do_diretorio"
+```
+
+Ou apenas:
+
+```powershell
+cd "caminho_do_diretorio"
+```
+
+---
+
+### 11. Listar Processos em Execução 🛠️
+
+Para listar os processos em execução no seu sistema:
+
+```powershell
+Get-Process
+```
+
+### 12. Parar um Processo 🔴
+
+Para parar um processo pelo nome:
+
+```powershell
+Stop-Process -Name "nome_do_processo"
+```
+
+Ou para parar um processo pelo ID:
+
+```powershell
+Stop-Process -Id 1234
+```
+
+---
+
+### 13. Obter Informações do Sistema 🖥️
+
+Para obter detalhes sobre o sistema, como versão do Windows:
+
+```powershell
+Get-ComputerInfo
+```
+
+Ou para verificar a versão do PowerShell:
+
+```powershell
+$PSVersionTable.PSVersion
+```
+
+---
+
+### 14. Comprimir Arquivos 🗜️
+
+Para comprimir um arquivo ou diretório em um arquivo ZIP:
+
+```powershell
+Compress-Archive -Path "caminho_do_arquivo" -DestinationPath "arquivo_comprimido.zip"
+```
+
+---
+
+### 15. Descomprimir Arquivos 📦
+
+Para extrair arquivos de um arquivo ZIP:
+
+```powershell
+Expand-Archive -Path "arquivo_comprimido.zip" -DestinationPath "diretorio_destino"
+```
+
+---
+
+## Dicas e Truques Extras ✨
+
+- **Usando Variáveis no PowerShell:**
+
+  Para criar uma variável e atribuir valor:
+
+  ```powershell
+  $nome_da_variavel = "valor"
   ```
 
-- **Comando `rm`**: O comando `rm -r` é poderoso e pode deletar diretórios e seus arquivos de forma irreversível, então tenha cuidado ao utilizá-lo.
+- **Redirecionando Saída para Arquivo 📄**
 
-- **Comando `mv`**: O comando `mv` é útil tanto para mover arquivos entre diretórios quanto para renomear arquivos.
+  Para salvar a saída de um comando em um arquivo de texto:
 
-## Referências
+  ```powershell
+  comando | Out-File "arquivo.txt"
+  ```
 
-- [Comandos do PowerShell](https://docs.microsoft.com/en-us/powershell/)
-- [Comandos do Linux](https://www.tutorialspoint.com/unix_commands/index.htm)
+- **Executando Script no PowerShell ⌨️**
+
+  Para rodar um script `.ps1`:
+
+  ```powershell
+  .\script.ps1
+  ```
+
+  Se você tiver problemas de segurança, pode alterar a política de execução:
+
+  ```powershell
+  Set-ExecutionPolicy RemoteSigned
+  ```
+
+---
+
+## Referências 📚
+
+- [Documentação Oficial do PowerShell](https://docs.microsoft.com/en-us/powershell/)
+- [Comandos PowerShell no Tutorialspoint](https://www.tutorialspoint.com/powershell/index.htm)
+
+---
+📝 **Feito com amor por [Bruno Hoinacki](https://www.linkedin.com/in/brunohoinacki/)!**
+```
