@@ -1,8 +1,15 @@
-# Guia de Comandos PowerShell 🖥️💻
+# 30 Dicas Essenciais de Comandos PowerShell para Administradores de Sistemas e Desenvolvedores 🖥️💻
 
-Este repositório contém uma lista de **comandos úteis para PowerShell** que você pode usar para gerenciar arquivos, diretórios e muito mais. Ideal para desenvolvedores e administradores de sistemas! 🚀
+Este repositório oferece uma coleção prática e organizada de comandos **PowerShell** úteis para o gerenciamento de arquivos, diretórios, configurações de rede e administração do sistema. Ideal para administradores de sistemas, desenvolvedores e qualquer pessoa que queira aprimorar sua produtividade com PowerShell.
 
----
+### Comandos para Arquivos e Diretórios 📂
+Explore comandos essenciais como **listar**, **criar**, **copiar** e **remover arquivos e pastas**. Além disso, aprenda a buscar arquivos e navegar entre diretórios facilmente.
+
+### Comandos Avançados ⚡
+Aprofunde-se em comandos mais avançados, como **gerenciamento de processos**, **testes de conexão de rede**, **configuração de IP estático**, e **comandos para configurar e gerenciar VPNs**.
+
+### Dicas e Truques Extras ✨
+Descubra truques úteis, como a utilização de **variáveis**, **redirecionamento de saída para arquivos**, e a execução de scripts no PowerShell.
 
 ## Comandos Básicos de Arquivo e Diretório 📂
 
@@ -218,7 +225,7 @@ Para exibir as configurações de rede, como endereço IP, máscara de sub-rede,
 Get-NetIPAddress
 ```
 
-Ou para uma visualização mais detalhada, semelhante ao **ipconfig**:
+Ou para uma visualização mais explicativa:
 
 ```powershell
 ipconfig
@@ -351,7 +358,7 @@ Add-VpnConnection -Name "MinhaVPN" -ServerAddress "vpn.servidor.com" -TunnelType
 - Para **visualizar as redes Wi-Fi** disponíveis:
 
 ```powershell
-Get-NetWiFiNetwork
+netsh wlan show networks
 ```
 
 - Para **conectar-se a uma rede Wi-Fi** específica:
